@@ -22,8 +22,10 @@ def combine_images():
 
 def find_contours(im):
     print 'find_contours'
+    imgray = cv2.cvtColor(im, cv2.COLOR_RGB2GRAY)
+    ret, thresh = cv2.threshold(imgray, 127, 255, 0)
     contours, hierarchy = cv2.findContours(
-        im, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     print len(contours), len(hierarchy)
     return contours
 
@@ -61,8 +63,10 @@ def main():
     time.sleep(1)
     device.home()
     print 'main'
-    im = cv2.imread('/Users/fogleman/Workspace/maptiles/zoom20clean.png')
-    im = isolate_buildings(im)
+    #im = cv2.imread('/Users/dario/Desktop/capture/mesh_simple.png')
+    im = cv2.imread('/Users/dario/Desktop/capture/alice_with_matt.png')
+    #im = cv2.imread('/Users/fogleman/Workspace/maptiles/zoom20clean.png')
+    #im = isolate_buildings(im)
     # im = combine_images()
     contours = find_contours(im)
     contours = filter_contours(contours)
@@ -72,8 +76,8 @@ def main():
     cv2.imwrite('out.png', im)
     paths = contour_paths(contours)
     print 'scaling paths'
-    drawing = xy.Drawing(paths).rotate_and_scale_to_fit(315, 380, step=90).scale(1, -1)
-    drawing = drawing.move(300, 0, 1, 0)
+    drawing = xy.Drawing(paths).rotate_and_scale_to_fit(275, 380, step=90).scale(1, -1)
+    drawing = drawing.move(265, 0, 1, 0)
     drawing.render().write_to_png('buildings.png')
     print 'drawing paths'
     paths = drawing.paths

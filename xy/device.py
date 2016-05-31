@@ -1,7 +1,7 @@
 import serial
 import time
 
-PORT = '/dev/tty.wchusbserial640'
+PORT = '/dev/cu.wchusbserial1410'
 BAUD = 115200
 
 UP = 10
