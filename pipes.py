@@ -119,7 +119,7 @@ def create_drawing():
     scene = xyz.Scene(shapes)
     paths = scene.render((25, 25, 10), (0, 0, 0), (0, 0, 1), 60, 1, 0.1, 100, 0.05)
     # paths.append([(-1, -1), (1, -1), (1, 1), (-1, 1), (-1, -1)])
-    drawing = xy.Drawing(paths).rotate(90).scale_to_fit(315, 380).rotate(-90)
+    drawing = xy.Drawing(paths).rotate(90).scale_to_fit(275, 380).rotate(-90)
     return drawing
 
 def main():
@@ -129,10 +129,10 @@ def main():
         drawing = create_drawing()
     n = 50
     o = 25
-    drawing = drawing.origin().crop(n, n + o, 315 - n, 315 - n + o).scale_to_fit(315, 315)
+    drawing = drawing.origin().crop(n, n + o, 275 - n, 275 - n + o).scale_to_fit(275, 275)
     drawing = drawing.sort_paths_greedy().join_paths()
     drawing.render().write_to_png('pipes.png')
-    # drawing.save('pipes.dwg')
+    drawing.save('pipes.dwg')
     xy.draw(drawing)
 
 if __name__ == '__main__':

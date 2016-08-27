@@ -37,12 +37,12 @@ def create_paths(im):
 def main():
     im = Image.open(sys.argv[1])
     paths = create_paths(im)
-    drawing = xy.Drawing(paths).rotate_and_scale_to_fit(315, 380, step=90)
+    drawing = xy.Drawing(paths).rotate_and_scale_to_fit(310, 380, step=90)
     drawing = drawing.sort_paths_greedy()
     drawing = drawing.join_paths()
     im = drawing.render()
     im.write_to_png('image.png')
-    # xy.draw(drawing)
+    xy.draw(drawing)
 
 if __name__ == '__main__':
     main()

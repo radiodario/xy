@@ -56,7 +56,7 @@ def main():
     drawing = drawing.sort_paths_greedy()
     im = drawing.render()
     im.write_to_png('eyes.png')
-    # xy.draw(drawing)
+    xy.draw(drawing)
 
 if __name__ == '__main__':
     main()

@@ -57,14 +57,10 @@ def contour_paths(contours):
     return result
 
 def main():
-    device = xy.Device()
-    time.sleep(2)
-    device.pen_up()
-    time.sleep(1)
-    device.home()
     print 'main'
     #im = cv2.imread('/Users/dario/Desktop/capture/mesh_simple.png')
-    im = cv2.imread('/Users/dario/Desktop/capture/alice_with_matt.png')
+    #im = cv2.imread('/Users/dario/Desktop/capture/alice_with_matt.png')
+    im = cv2.imread('/Users/dario/workspace/xy/images/arturo.png')
     #im = cv2.imread('/Users/fogleman/Workspace/maptiles/zoom20clean.png')
     #im = isolate_buildings(im)
     # im = combine_images()
@@ -83,12 +79,17 @@ def main():
     paths = drawing.paths
     paths.sort(key=lambda path: path[0][1])
     n = 100
+    #device = xy.Device()
+    #time.sleep(2)
+    #device.pen_up()
+    #time.sleep(1)
+    #device.home()
     for i in range(0, len(paths), n):
         print i
         group = paths[i:i+n]
         group.sort(key=lambda path: path[0][0])
-        for path in group:
-            device.draw(xy.simplify(path, 0.05))
+        #for path in group:
+            #device.draw(xy.simplify(path, 0.05))
 
 if __name__ == '__main__':
     main()

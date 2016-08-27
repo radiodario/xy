@@ -4,6 +4,7 @@ import drawing
 import math
 import progress
 import time
+import re
 
 def simplify(points, tolerance=0.05):
     if len(points) < 2:
@@ -57,15 +58,22 @@ def draw(x, tolerance=0.05):
 def parse_svg_path(line):
     paths = []
     path = []
-    for token in line.split():
-        cmd = token[0].upper()
-        x, y = map(float, token[1:].split(','))
-        if cmd == 'M':
-            if len(path) > 1:
-                paths.append(path)
-            path = [(x, y)]
-        elif cmd == 'L':
-            path.append((x, y))
+    cmd = None
+    print('doing stuff to:' + line);
+    tokens = re.split('([MmZzLlHhVvCcSsQqTtAa])', line)
+    for token in tokens:
+        if len(token) == 0:
+            continue
+        elif len(token) == 1:
+            cmd = token
+        else:
+            x, y = map(float, token.split(','))
+            if cmd == 'M':
+                if len(path) > 1:
+                    paths.append(path)
+                path = [(x, y)]
+            elif cmd == 'L':
+                path.append((x, y))
     if len(path) > 1:
         paths.append(path)
     return paths

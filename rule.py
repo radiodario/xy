@@ -98,7 +98,7 @@ def main():
         im = drawing.render()#line_width=1.25)
         im.write_to_png('rule%03d.png' % rule)
         drawing = drawing.sort_paths_greedy()
-        xy.draw(drawing)
+        #xy.draw(drawing)
 
 if __name__ == '__main__':
     main()

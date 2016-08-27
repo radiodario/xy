@@ -300,7 +300,7 @@ def main():
     dot_paths = xy.join_paths(xy.sort_paths_greedy(paths))
 
     paths = maze_paths + ghost_paths + pacman_paths + dot_paths
-    drawing = xy.Drawing(paths).scale_to_fit(315, 380)
+    drawing = xy.Drawing(paths).scale_to_fit(275, 380)
     drawing.render().write_to_png('pac.png')
     xy.draw(drawing)
 
