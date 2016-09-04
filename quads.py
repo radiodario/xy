@@ -162,7 +162,7 @@ def main():
     #     model.render('out%d.png' % max_depth, max_depth)
     drawing = xy.Drawing(paths).scale_to_fit(315, 315).rotate(180).scale(1, -1)
     drawing.render().write_to_png('quads.png')
-    xy.draw(drawing, tolerance=None)
+    #xy.draw(drawing, tolerance=None)
 
 if __name__ == '__main__':
     main()

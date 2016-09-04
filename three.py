@@ -67,10 +67,10 @@ def main():
     scene = xyz.Scene(shapes)
     paths = scene.render((20, 20, 10), (0, 0, 0), (0, 0, 1), 30, 1, 0.1, 100, 0.05)
     # paths.append([(-1, -1), (1, -1), (1, 1), (-1, 1), (-1, -1)])
-    drawing = xy.Drawing(paths).scale_to_fit(315, 380)
+    drawing = xy.Drawing(paths).scale_to_fit(275, 380)
     drawing = drawing.sort_paths_greedy().join_paths()
     drawing.render().write_to_png('three.png')
-    # xy.draw(drawing)
+    xy.draw(drawing)
 
 if __name__ == '__main__':
     main()
