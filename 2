@@ -1,0 +1,61 @@
+import math
+import random
+import xy
+
+
+rules = [
+    {
+        "a": 'F',
+        "b": 'FF+[+F-F-F]-[-F+F+F]'
+    }
+]
+
+axiom = "F"
+
+
+def generate(sentence):
+    nextSentence = ''
+    for x in sentence:
+        found = False
+        for rule in rules:
+            if rule['a'] == x:
+                found = True
+                nextSentence += rule['b']
+                break;
+        if not found:
+            nextSentence += x
+    return nextSentence;
+
+
+def main():
+    sentence = axiom
+    turtle = xy.Turtle()
+    step = 1
+    #build up the rule
+    for x in range(3):
+        print sentence
+        sentence = generate(sentence)
+    lastPos = turtle.pos()
+    for x in sentence:
+        if (x == 'F'):
+            turtle.forward(step)
+        if (x == '+'):
+            turtle.rt(50)
+        if (x == '-'):
+            turtle.lt(50)
+        if (x == '['):
+            lastPos = turtle.pos()
+        if (x == ']'):
+            turtle.pu()
+            turtle.setpos(*lastPos)
+            turtle.pd()
+
+
+    drawing = turtle.drawing.rotate_and_scale_to_fit(255, 380, step=90)
+    drawing = drawing.scale(1, -1)
+    drawing = drawing.origin()
+    drawing.render().write_to_png('lsystem.png')
+
+
+if __name__ == '__main__':
+    main()

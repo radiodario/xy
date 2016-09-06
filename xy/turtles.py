@@ -34,13 +34,15 @@ class Turtle(object):
 
     def pd(self):
         self.pen = True
+        if len(self._path) < 1:
+            self._path.append((self.x, self.y))
     pendown = down = pd
 
     def pu(self):
         self.pen = False
         if len(self._path) > 1:
             self._paths.append(self._path)
-            self._path = [(self.x, self.y)]
+            self._path = []
     penup = up = pu
 
     def isdown(self):

@@ -57,10 +57,11 @@ def poisson_disc(x1, y1, x2, y2, r, n):
     grid = Grid(r)
     active = []
     for i in range(1):
-        x = x1 + random.random() * (x2 - x1)
-        y = y1 + random.random() * (y2 - y1)
+        #x = x1 + random.random() * (x2 - x1)
+        #y = y1 + random.random() * (y2 - y1)
         x = (x1 + x2) / 2.0
         y = (y1 + y2) / 2.0
+        #y = y2
         a = random.random() * 2 * pi
         if grid.insert(x, y):
             active.append((x, y, a, 0, 0, i))

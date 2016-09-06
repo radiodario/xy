@@ -92,7 +92,7 @@ def create_drawing(rule, h):
 
 def main():
     h = 128
-    for rule in [30]:#range(256):
+    for rule in [100]:
         print rule
         drawing = create_drawing(rule, h)
         im = drawing.render()#line_width=1.25)
